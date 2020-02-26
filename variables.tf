@@ -8,6 +8,7 @@ variable "environment" { default = "dev" }
 variable "mount_path" { default = "" }
 variable "root_path" { default = "" }
 variable "dns_policy" { default = "ClusterFirst" }
+variable "service_protocol" { default = "TCP" }
 variable "ip" { default = "" }
 variable "debug_port" { default = "" }
 variable "env" { default = {} }

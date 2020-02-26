@@ -50,5 +50,6 @@ module "service" {
   ports      = var.application_ports
   ip_address = var.ip
   node_port  = var.debug_port
+  protocol   = var.service_protocol
 }
 
