@@ -12,4 +12,4 @@ variable "service_protocol" { default = "TCP" }
 variable "ip" { default = "" }
 variable "debug_port" { default = "" }
 variable "env" { default = {} }
-
+variable "image_pull_policy" { default = "Always" }

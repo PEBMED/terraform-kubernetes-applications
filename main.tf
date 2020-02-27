@@ -42,6 +42,7 @@ module "deployment" {
   mount_path  = local.mount_path
   root_path   = local.root_path
   dns_policy  = var.dns_policy
+  image_pull_policy = var.image_pull_policy
 }
 
 module "service" {
