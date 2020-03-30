@@ -23,7 +23,7 @@ resource "kubernetes_service" "service" {
         target_port = port.value
         protocol = var.protocol
         name = "port-${port.value}"
-        node_port = var.node_port != "" ? var.node_port : 0
+        node_port = var.node_port != "" && port.index == 0 ? var.node_port : 0
       }
     }
 
