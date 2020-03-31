@@ -26,7 +26,7 @@ resource "kubernetes_deployment" "deployment" {
       spec {
         container {
           image = "${var.registry}/${ var.image }"
-          imagePullPolicy = var.image_pull_policy
+          image_pull_policy = var.image_pull_policy
           name  = var.name
 
           volume_mount {
