@@ -17,13 +17,13 @@ resource "kubernetes_service" "service" {
     session_affinity = "None"
 
     dynamic "port" {
-      for_each = var.ports
+      for_each = toset(var.ports)
       content {
-        port = port.value
-        target_port = port.value
+        port = each.value
+        target_port = each.value
         protocol = var.protocol
-        name = "port-${port.value}"
-        node_port = var.node_port != "" && port.index == 0 ? var.node_port : 0
+        name = "port-${each.value}"
+        node_port = var.node_port != "" && each.key == 0 ? var.node_port : 0
       }
     }
 
