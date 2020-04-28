@@ -29,10 +29,14 @@ resource "kubernetes_deployment" "deployment" {
           image_pull_policy = var.image_pull_policy
           name  = var.name
 
-          volume_mount {
-            mount_path = var.mount_path
-            name = "source-code"
-            read_only = "false"
+
+          dynamic "volume_mount" {
+            for_each = var.mount_path != "" ? [] : [var.mount_path]
+            content {
+              mount_path = var.mount_path
+              name = "source-code"
+              read_only = "false"
+            }
           }
 
           dynamic "env" {
