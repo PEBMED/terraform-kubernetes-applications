@@ -22,7 +22,7 @@ locals {
   mount_path = "${
     var.mount_path != ""
     ? var.mount_path
-    : "/app"
+    : ""
   }"
 }
 
