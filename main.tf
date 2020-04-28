@@ -32,16 +32,16 @@ provider "kubernetes" {
 }
 
 module "deployment" {
-  source      = "./modules/kubernetes/deployment"
-  environment = var.environment
-  env         = var.env
-  name        = var.application_name
-  ports       = var.application_ports
-  registry    = var.registry
-  image       = local.deployment_container_image
-  mount_path  = local.mount_path
-  root_path   = local.root_path
-  dns_policy  = var.dns_policy
+  source            = "./modules/kubernetes/deployment"
+  environment       = var.environment
+  env               = var.env
+  name              = var.application_name
+  ports             = var.application_ports
+  registry          = var.registry
+  image             = local.deployment_container_image
+  mount_path        = local.mount_path
+  root_path         = local.root_path
+  dns_policy        = var.dns_policy
   image_pull_policy = var.image_pull_policy
 }
 
