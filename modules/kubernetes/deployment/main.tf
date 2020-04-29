@@ -31,7 +31,7 @@ resource "kubernetes_deployment" "deployment" {
 
 
           dynamic "volume_mount" {
-            for_each = var.mount_path != "" ? [] : [var.mount_path]
+            for_each = var.mount_path != "" ? [var.mount_path] : []
             content {
               mount_path = var.mount_path
               name = "source-code"
