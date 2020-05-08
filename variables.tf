@@ -11,5 +11,5 @@ variable "dns_policy" { default = "ClusterFirst" }
 variable "service_protocol" { default = "TCP" }
 variable "ip" { default = "" }
 variable "debug_port" { default = "" }
-variable "env" { default = {} }
+variable "application_env_var" { default = {} }
 variable "image_pull_policy" { default = "Always" }

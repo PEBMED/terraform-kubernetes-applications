@@ -12,7 +12,7 @@ locals {
 
 locals {
   root_path = "${
-    var.root_path != "" && var.env == "dev"
+    var.root_path != "" && var.environment == "dev"
     ? "${format("/applications/%s", var.application_name)}${var.root_path}"
     : ""
   }"
@@ -20,7 +20,7 @@ locals {
 
 locals {
   mount_path = "${
-    var.mount_path != "" && var.env == "dev"
+    var.mount_path != "" && var.environment == "dev"
     ? var.mount_path
     : ""
   }"
@@ -34,7 +34,7 @@ provider "kubernetes" {
 module "deployment" {
   source            = "./modules/kubernetes/deployment"
   environment       = var.environment
-  env               = var.env
+  env               = var.application_env_var
   name              = var.application_name
   ports             = var.application_ports
   registry          = var.registry
