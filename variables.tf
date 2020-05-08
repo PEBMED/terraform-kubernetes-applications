@@ -5,8 +5,8 @@ variable "application_ports" { type = list(number) }
 variable "registry" {}
 variable "image" { default = "" }
 variable "environment" { default = "dev" }
-variable "mount_path" { default = "" }
-variable "root_path" { default = "" }
+variable "mount_path" { default = "/app" }
+variable "root_path" { default = "/src" }
 variable "dns_policy" { default = "ClusterFirst" }
 variable "service_protocol" { default = "TCP" }
 variable "ip" { default = "" }

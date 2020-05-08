@@ -72,10 +72,11 @@ resource "kubernetes_deployment" "deployment" {
         dns_policy                        = var.dns_policy
         restart_policy                    = "Always"
         termination_grace_period_seconds  = 30
-        volume {
-          name = "source-code"
-          host_path {
-            path = var.root_path
+        dynamic "volume" {
+          for_each = var.root_path != "" ? [var.root_path] : []
+          content {
+            host_path { path = var.mount_path }
+            name = "source-code"
           }
         }
       }
