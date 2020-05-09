@@ -4,7 +4,7 @@ variable "application_name" {}
 variable "application_ports" { type = list(number) }
 variable "registry" {}
 variable "image" { default = "" }
-variable "environment" { default = "dev" }
+variable "environment" { default = "develop" }
 variable "mount_path" { default = "/app" }
 variable "root_path" { default = "/src" }
 variable "dns_policy" { default = "ClusterFirst" }
