@@ -12,7 +12,7 @@ locals {
 
 locals {
   root_path = "${
-    var.root_path != "" && var.environment == "dev"
+    var.environment == "dev"
     ? "${format("/applications/%s", var.application_name)}${var.root_path}"
     : ""
   }"
@@ -20,7 +20,7 @@ locals {
 
 locals {
   mount_path = "${
-    var.mount_path != "" && var.environment == "dev"
+    var.environment == "dev"
     ? var.mount_path
     : ""
   }"
@@ -28,7 +28,7 @@ locals {
 
 locals {
   debug_port = "${
-    var.debug_port != "" && var.environment == "dev"
+    var.environment == "dev"
     ? var.debug_port
     : ""
   }"
