@@ -26,6 +26,14 @@ locals {
   }"
 }
 
+locals {
+  debug_port = "${
+    var.debug_port != "" && var.environment == "dev"
+    ? var.debug_port
+    : ""
+  }"
+}
+
 provider "kubernetes" {
   host        = var.k8s_api_address
   config_path = var.k8s_config_path
@@ -50,7 +58,7 @@ module "service" {
   name       = var.application_name
   ports      = var.application_ports
   ip_address = var.ip
-  node_port  = var.debug_port
+  node_port  = local.debug_port
   protocol   = var.service_protocol
 }
 
