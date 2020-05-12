@@ -12,7 +12,7 @@ locals {
 
 locals {
   root_path = "${
-    var.environment == "develop"
+    var.environment == "develop" && var.live_coding == "True"
     ? "${format("/applications/%s", var.application_name)}${var.root_path}"
     : ""
   }"
@@ -20,7 +20,7 @@ locals {
 
 locals {
   mount_path = "${
-    var.environment == "develop"
+    var.environment == "develop" && var.live_coding == "True"
     ? var.mount_path
     : ""
   }"

@@ -13,3 +13,4 @@ variable "ip" { default = "" }
 variable "debug_port" { default = "" }
 variable "application_env_var" { default = {} }
 variable "image_pull_policy" { default = "Always" }
+variable "live_coding" { default = "False" }
