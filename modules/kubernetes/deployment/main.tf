@@ -48,7 +48,7 @@ resource "kubernetes_deployment" "deployment" {
           }
 
           resources {
-            requests {
+            requests = {
               cpu    = var.requests["cpu"]
               memory = var.requests["memory"]
             }

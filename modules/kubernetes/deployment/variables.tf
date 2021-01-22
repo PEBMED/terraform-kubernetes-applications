@@ -25,7 +25,7 @@ variable "liveness_probe" {
 variable "requests" {
   type = map(string)
   default = {
-    cpu = "0.1"
-    memory = "64m"
+    cpu = "10m"
+    memory = "64Mi"
   }
 }
