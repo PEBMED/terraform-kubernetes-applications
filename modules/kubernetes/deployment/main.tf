@@ -8,6 +8,14 @@ resource "kubernetes_deployment" "deployment" {
   }
 
   spec {
+    strategy {
+      type = "RollingUpdate"
+      rolling_update {
+        max_surge = "50%"
+        max_unavailable = 0
+      }
+    }
+
     replicas                = var.replicas
     revision_history_limit  = 3
     selector {
@@ -24,6 +32,20 @@ resource "kubernetes_deployment" "deployment" {
       }
 
       spec {
+        affinity {
+          pod_affinity {
+            required_during_scheduling_ignored_during_execution {
+              label_selector {
+                match_expressions {
+                  key      = "app"
+                  operator = "In"
+                  values   = [var.name]
+                }
+              }
+              topology_key = "kubernetes.io/hostname"
+            }
+          }
+        }
         container {
           image = "${var.registry}/${ var.image }"
           image_pull_policy = var.image_pull_policy
@@ -49,6 +71,10 @@ resource "kubernetes_deployment" "deployment" {
 
           resources {
             requests = {
+              cpu    = var.requests["cpu"]
+              memory = var.requests["memory"]
+            }
+            limits = {
               cpu    = var.requests["cpu"]
               memory = var.requests["memory"]
             }
