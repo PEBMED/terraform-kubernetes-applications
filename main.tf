@@ -1,5 +1,11 @@
 terraform {
   required_version = ">= 0.12"
+  required_providers {
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = ">= 2.0"
+    }
+  }
 }
 
 locals {
@@ -62,3 +68,7 @@ module "service" {
   protocol   = var.service_protocol
 }
 
+module "hpa" {
+  source     = "./modules/kubernetes/hpa"
+  name       = var.application_name
+}
