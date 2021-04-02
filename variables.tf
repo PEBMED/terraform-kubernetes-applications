@@ -17,7 +17,7 @@ variable "live_coding" { default = "True" }
 variable "replicas" {
     type = map(number)
     default = {
-        min = 2
+        min = 1
         max = 20
     }
 }
