@@ -14,6 +14,7 @@ variable "debug_port" { default = "" }
 variable "application_env_var" { default = {} }
 variable "image_pull_policy" { default = "Always" }
 variable "live_coding" { default = "True" }
+variable "visibility" { default = "private" }
 variable "replicas" {
     type = map(number)
     default = {

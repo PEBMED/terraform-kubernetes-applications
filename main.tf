@@ -60,16 +60,18 @@ module "deployment" {
 }
 
 module "service" {
-  source     = "./modules/kubernetes/service"
-  name       = var.application_name
-  ports      = var.application_ports
-  ip_address = var.ip
-  node_port  = local.debug_port
-  protocol   = var.service_protocol
+  source      = "./modules/kubernetes/service"
+  environment = var.environment
+  name        = var.application_name
+  ports       = var.application_ports
+  ip_address  = var.ip
+  node_port   = local.debug_port
+  protocol    = var.service_protocol
+  visibility  = var.visibility
 }
 
 module "hpa" {
-  source     = "./modules/kubernetes/hpa"
-  name       = var.application_name
-  replicas   = var.replicas
+  source   = "./modules/kubernetes/hpa"
+  name     = var.application_name
+  replicas = var.replicas
 }

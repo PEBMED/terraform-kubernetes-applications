@@ -4,11 +4,23 @@ locals {
       ? "LoadBalancer"
       : "ClusterIP"
   }"
+  visibility_annotation = "${
+    var.visibility != "private"
+      ? "false"
+      : "true"
+  }"
 }
 
 resource "kubernetes_service" "service" {
   metadata {
     name = var.name
+    annotations = {
+      "service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout": "300"
+      "service.beta.kubernetes.io/aws-load-balancer-connection-draining-enabled": "false"
+      "service.beta.kubernetes.io/aws-load-balancer-backend-protocol": var.protocol
+      "external-dns.alpha.kubernetes.io/set-identifier": var.environment
+      "service.beta.kubernetes.io/aws-load-balancer-internal": local.visibility_annotation
+    }
   }
   spec {
     selector = {
