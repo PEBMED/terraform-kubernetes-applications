@@ -19,7 +19,7 @@ resource "kubernetes_horizontal_pod_autoscaler" "hpa" {
       resource {
         name = "memory"
         target {
-          type  = "average_utilization"
+          type  = "Utilization"
           value = 80
         }
       }
