@@ -14,15 +14,25 @@ resource "kubernetes_horizontal_pod_autoscaler" "hpa" {
       name        = var.name
     }
 
-    # metric {
-    #   type = "Resource"
-    #   resource {
-    #     name = "memory"
-    #     target {
-    #       type  = "Utilization"
-    #       average_utilization = 80
-    #     }
-    #   }
-    # }
+    metric {
+      type = "Resource"
+      resource {
+        name = "memory"
+        target {
+          type  = "Utilization"
+          average_utilization = 80
+        }
+      }
+    }
+    metric {
+      type = "Resource"
+      resource {
+        name = "cpu"
+        target {
+          type  = "Utilization"
+          average_utilization = 80
+        }
+      }
+    }
   }
 }
