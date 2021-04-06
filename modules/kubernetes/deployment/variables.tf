@@ -11,16 +11,7 @@ variable "ports" {}
 variable "protocol" { default = "HTTP" }
 variable "dns_policy" {}
 variable "image_pull_policy" {}
-
-variable "liveness_probe" {
-  type = map(string)
-  default = {
-   initial_delay_seconds = "15"
-   period_seconds = "15"
-   success_threshold = "1"
-   timeout_seconds = "3"
-  }
-}
+variable "probe" { type = map(string) }
 
 variable "requests" {
   type = map(string)

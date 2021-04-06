@@ -89,10 +89,10 @@ resource "kubernetes_deployment" "deployment" {
             #   port    = var.ports[0]
             #   scheme  = var.protocol
             # }
-            initial_delay_seconds = var.liveness_probe["initial_delay_seconds"]
-            period_seconds        = var.liveness_probe["period_seconds"]
-            success_threshold     = var.liveness_probe["success_threshold"]
-            timeout_seconds       = var.liveness_probe["timeout_seconds"]
+            initial_delay_seconds = var.probe["initial_delay_seconds"]
+            period_seconds        = var.probe["period_seconds"]
+            success_threshold     = var.probe["success_threshold"]
+            timeout_seconds       = var.probe["timeout_seconds"]
           }
           readiness_probe {
             tcp_socket {
@@ -103,10 +103,10 @@ resource "kubernetes_deployment" "deployment" {
             #   port    = var.ports[0]
             #   scheme  = var.protocol
             # }
-            initial_delay_seconds = var.liveness_probe["initial_delay_seconds"]
-            period_seconds        = var.liveness_probe["period_seconds"]
-            success_threshold     = var.liveness_probe["success_threshold"]
-            timeout_seconds       = var.liveness_probe["timeout_seconds"]
+            initial_delay_seconds = var.probe["initial_delay_seconds"]
+            period_seconds        = var.probe["period_seconds"]
+            success_threshold     = var.probe["success_threshold"]
+            timeout_seconds       = var.probe["timeout_seconds"]
           }
         }
         dns_policy = var.dns_policy

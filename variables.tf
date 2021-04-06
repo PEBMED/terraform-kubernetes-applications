@@ -22,3 +22,12 @@ variable "replicas" {
         max = 20
     }
 }
+variable "probe" {
+  type = map(string)
+  default = {
+   initial_delay_seconds = "15"
+   period_seconds = "15"
+   success_threshold = "1"
+   timeout_seconds = "3"
+  }
+}

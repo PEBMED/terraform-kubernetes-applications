@@ -57,6 +57,7 @@ module "deployment" {
   root_path         = local.root_path
   dns_policy        = var.dns_policy
   image_pull_policy = var.image_pull_policy
+  probe             = var.probe
 }
 
 module "service" {
