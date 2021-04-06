@@ -75,8 +75,8 @@ resource "kubernetes_deployment" "deployment" {
               memory = var.requests["memory"]
             }
             limits = {
-              cpu    = var.requests["cpu"] ? var.environment != "develop" : "1000mi"
-              memory = var.requests["memory"] ? var.environment != "develop" : "1G"
+              cpu    = var.environment != "develop" ? var.requests["cpu"] : "1000mi"
+              memory = var.environment != "develop" ? var.requests["memory"] : "1G"
             }
           }
 
