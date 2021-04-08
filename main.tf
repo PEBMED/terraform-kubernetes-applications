@@ -74,7 +74,8 @@ module "service" {
 }
 
 module "hpa" {
-  source   = "./modules/kubernetes/hpa"
-  name     = var.application_name
-  replicas = var.replicas
+  source       = "./modules/kubernetes/hpa"
+  name         = var.application_name
+  replicas     = var.replicas
+  environment  = var.environment
 }
