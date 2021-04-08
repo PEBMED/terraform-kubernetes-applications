@@ -1,6 +1,6 @@
 locals {
   service_type = "${
-    var.node_port != "" || var.visibility == "public"
+    var.visibility == "public"
       ? "LoadBalancer"
       : "ClusterIP"
   }"
