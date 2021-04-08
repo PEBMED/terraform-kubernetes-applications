@@ -1,3 +1,11 @@
+locals {
+  max_unavailable = "${
+    var.environment != "production"
+      ? 1
+      : 0
+  }"
+}
+
 resource "kubernetes_deployment" "deployment" {
 
   metadata {
@@ -12,7 +20,7 @@ resource "kubernetes_deployment" "deployment" {
       type = "RollingUpdate"
       rolling_update {
         max_surge       = "50%"
-        max_unavailable = 0
+        max_unavailable = local.max_unavailable
       }
     }
 
