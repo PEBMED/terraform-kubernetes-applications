@@ -93,7 +93,7 @@ resource "kubernetes_deployment" "deployment" {
               port = var.ports[0]
             }
             # http_get {
-            #   path    = "/"
+            #   path    = "/healthcheck"
             #   port    = var.ports[0]
             #   scheme  = var.protocol
             # }
@@ -107,7 +107,7 @@ resource "kubernetes_deployment" "deployment" {
               port = var.ports[0]
             }
             # http_get {
-            #   path    = "/"
+            #   path    = "/healthcheck"
             #   port    = var.ports[0]
             #   scheme  = var.protocol
             # }
