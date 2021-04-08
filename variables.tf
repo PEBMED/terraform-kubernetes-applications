@@ -32,4 +32,4 @@ variable "probe" {
   }
 }
 variable "aws_cert_arn" { default = "" }
-variable "root_domain" { default = "" }
+variable "root_domain" { default = "prd.pebmed.com.br" }
