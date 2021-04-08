@@ -27,7 +27,7 @@ resource "kubernetes_service" "service" {
     annotations = {
       "external-dns.alpha.kubernetes.io/aws-weight": "100"
       "external-dns.alpha.kubernetes.io/hostname": "${var.name}.${var.root_domain}"
-      "service.beta.kubernetes.io/aws-load-balancer-ssl-cer": var.aws_cert_arn
+      "service.beta.kubernetes.io/aws-load-balancer-ssl-cert": var.aws_cert_arn
       "service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout": "600"
       "service.beta.kubernetes.io/aws-load-balancer-connection-draining-enabled": "false"
       "service.beta.kubernetes.io/aws-load-balancer-backend-protocol": local.loadbalancer_protocol
