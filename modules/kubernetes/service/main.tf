@@ -1,6 +1,6 @@
 locals {
   service_type_develop = "${
-    var.node_port != ""
+    var.node_port != null
       ? "LoadBalancer"
       : "ClusterIP"
   }"
