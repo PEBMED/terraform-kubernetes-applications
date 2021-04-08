@@ -1,5 +1,10 @@
 locals {
-  service_type = "${
+  service_type_develop = "${
+    var.node_port != ""
+      ? "LoadBalancer"
+      : "ClusterIP"
+  }"
+  service_type_production = "${
     var.visibility == "public"
       ? "LoadBalancer"
       : "ClusterIP"
@@ -54,7 +59,7 @@ resource "kubernetes_service" "develop" {
       }
     }
 
-    type       = local.service_type
+    type       = local.service_type_develop
     cluster_ip = var.ip_address
   }
 }
@@ -92,7 +97,7 @@ resource "kubernetes_service" "homolog_and_production" {
       }
     }
 
-    type       = local.service_type
+    type       = local.service_type_production
     cluster_ip = var.ip_address
   }
 }
