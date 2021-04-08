@@ -34,9 +34,9 @@ locals {
 
 locals {
   debug_port = "${
-    var.environment == "develop"
-    ? var.debug_port
-    : ""
+    var.environment == "production"
+    ? ""
+    : var.debug_port
   }"
 }
 
