@@ -31,3 +31,5 @@ variable "probe" {
    timeout_seconds = "3"
   }
 }
+variable "aws_cert_arn" { default = "" }
+variable "root_domain" { default = "" }

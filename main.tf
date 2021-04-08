@@ -61,14 +61,16 @@ module "deployment" {
 }
 
 module "service" {
-  source      = "./modules/kubernetes/service"
-  environment = var.environment
-  name        = var.application_name
-  ports       = var.application_ports
-  ip_address  = var.ip
-  node_port   = local.debug_port
-  protocol    = var.service_protocol
-  visibility  = var.visibility
+  source       = "./modules/kubernetes/service"
+  environment  = var.environment
+  name         = var.application_name
+  ports        = var.application_ports
+  ip_address   = var.ip
+  node_port    = local.debug_port
+  protocol     = var.service_protocol
+  visibility   = var.visibility
+  aws_cert_arn = var.aws_cert_arn
+  root_domain  = var.root_domain
 }
 
 module "hpa" {

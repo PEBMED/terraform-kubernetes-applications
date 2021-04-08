@@ -5,3 +5,5 @@ variable "node_port" {}
 variable "protocol" {}
 variable "environment" {}
 variable "visibility" {}
+variable "aws_cert_arn" {}
+variable "root_domain" {}
