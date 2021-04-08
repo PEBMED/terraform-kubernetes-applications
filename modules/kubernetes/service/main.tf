@@ -1,8 +1,8 @@
 locals {
   service_type = "${
     var.node_port != ""
-      ? "ClusterIP"
-      : "LoadBalancer"
+      ? "LoadBalancer"
+      : "ClusterIP"
   }"
   visibility_annotation = "${
     var.visibility != "private"
