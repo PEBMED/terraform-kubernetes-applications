@@ -5,7 +5,7 @@ locals {
       : "ClusterIP"
   }"
   service_type_production = "${
-    var.visibility == "public"
+    var.visibility == "public" && var.environment == "production"
       ? "LoadBalancer"
       : "ClusterIP"
   }"
