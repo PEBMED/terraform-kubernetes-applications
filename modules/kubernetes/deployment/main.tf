@@ -168,7 +168,7 @@ resource "kubernetes_deployment" "deployment_production" {
 
           env_from {
             secret_ref {
-              name = "shared"
+              name = "shared-secrets"
             }
           }
           env_from {
