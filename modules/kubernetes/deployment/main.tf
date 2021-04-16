@@ -119,6 +119,7 @@ resource "kubernetes_deployment" "deployment_production" {
     name = var.name
     labels = {
       app = var.name
+      alias = var.name
     }
   }
 
