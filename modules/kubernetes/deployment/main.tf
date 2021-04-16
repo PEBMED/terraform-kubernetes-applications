@@ -170,6 +170,8 @@ resource "kubernetes_deployment" "deployment_production" {
             secret_ref {
               name = "shared"
             }
+          }
+          env_from {
             secret_ref {
               name = var.name
             }
