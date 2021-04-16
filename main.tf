@@ -58,6 +58,7 @@ module "deployment" {
   dns_policy        = var.dns_policy
   image_pull_policy = var.image_pull_policy
   probe             = var.probe
+  limits            = var.limits
 }
 
 module "service" {

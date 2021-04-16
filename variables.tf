@@ -33,3 +33,10 @@ variable "probe" {
 }
 variable "aws_cert_arn" { default = "" }
 variable "root_domain" { default = "prd.pebmed.com.br" }
+variable "limits" {
+  type = map(string)
+  default = {
+    cpu = "250m"
+    memory = "256Mi"
+  }
+}

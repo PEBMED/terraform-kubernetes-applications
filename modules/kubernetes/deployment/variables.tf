@@ -12,7 +12,6 @@ variable "protocol" { default = "HTTP" }
 variable "dns_policy" {}
 variable "image_pull_policy" {}
 variable "probe" { type = map(string) }
-
 variable "requests" {
   type = map(string)
   default = {
@@ -20,10 +19,4 @@ variable "requests" {
     memory = "64Mi"
   }
 }
-variable "limits" {
-  type = map(string)
-  default = {
-    cpu = "500m"
-    memory = "512Mi"
-  }
-}
+variable "limits" {}
