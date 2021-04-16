@@ -20,3 +20,10 @@ variable "requests" {
     memory = "64Mi"
   }
 }
+variable "limits" {
+  type = map(string)
+  default = {
+    cpu = "500m"
+    memory = "512Mi"
+  }
+}

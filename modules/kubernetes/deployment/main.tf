@@ -191,8 +191,8 @@ resource "kubernetes_deployment" "deployment_production" {
               memory = var.requests["memory"]
             }
             limits = {
-              cpu    = var.requests["cpu"]
-              memory = var.requests["memory"]
+              cpu    = var.limits["cpu"]
+              memory = var.limits["memory"]
             }
           }
 
