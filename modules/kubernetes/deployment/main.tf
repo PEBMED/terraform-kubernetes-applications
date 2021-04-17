@@ -137,6 +137,7 @@ resource "kubernetes_deployment" "deployment_production" {
     selector {
       match_labels = {
         app = var.uuid
+        alias = var.name
       }
     }
 
