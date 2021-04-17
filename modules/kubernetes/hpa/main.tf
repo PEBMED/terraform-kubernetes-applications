@@ -14,7 +14,7 @@ resource "kubernetes_horizontal_pod_autoscaler" "hpa" {
     scale_target_ref {
       api_version = "apps/v1beta1"
       kind        = "Deployment"
-      name        = var.name
+      name        = var.uuid
     }
 
     metric {
