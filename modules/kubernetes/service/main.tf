@@ -104,10 +104,10 @@ resource "kubernetes_service" "homolog" {
 resource "kubernetes_service" "production" {
   count = var.environment == "production" ? 1 : 0
   metadata {
-    name = var.name
+    name = "svc-${var.uuid}"
     annotations = {
       "external-dns.alpha.kubernetes.io/aws-weight": "100"
-      "external-dns.alpha.kubernetes.io/hostname": "${var.name}.${var.root_domain}"
+      "external-dns.alpha.kubernetes.io/hostname": "app-${var.uuid}.${var.root_domain}"
       "service.beta.kubernetes.io/aws-load-balancer-ssl-cert": var.aws_cert_arn
       "service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout": "600"
       "service.beta.kubernetes.io/aws-load-balancer-connection-draining-enabled": "false"
@@ -119,7 +119,7 @@ resource "kubernetes_service" "production" {
   }
   spec {
     selector = {
-      app = var.name
+      app = var.uuid
     }
     session_affinity = "None"
 

@@ -45,6 +45,9 @@ provider "kubernetes" {
   config_path = var.k8s_config_path
 }
 
+resource "random_uuid" "uuid" {
+}
+
 module "deployment" {
   source            = "./modules/kubernetes/deployment"
   environment       = var.environment
@@ -59,6 +62,7 @@ module "deployment" {
   image_pull_policy = var.image_pull_policy
   probe             = var.probe
   limits            = var.limits
+  uuid              = random_uuid.uuid.result
 }
 
 module "service" {
@@ -72,6 +76,7 @@ module "service" {
   visibility   = var.visibility
   aws_cert_arn = var.aws_cert_arn
   root_domain  = var.root_domain
+  uuid         = random_uuid.uuid.result
 }
 
 module "hpa" {
@@ -79,4 +84,5 @@ module "hpa" {
   name         = var.application_name
   replicas     = var.replicas
   environment  = var.environment
+  uuid         = random_uuid.uuid.result
 }

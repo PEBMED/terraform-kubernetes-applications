@@ -20,3 +20,4 @@ variable "requests" {
   }
 }
 variable "limits" {}
+variable "uuid" {}

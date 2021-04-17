@@ -116,9 +116,9 @@ resource "kubernetes_deployment" "deployment_develop_homolog" {
 resource "kubernetes_deployment" "deployment_production" {
   count = var.environment != "production" ? 0 : 1
   metadata {
-    name = var.name
+    name = var.uuid
     labels = {
-      app = var.name
+      app = var.uuid
       alias = var.name
     }
   }
@@ -136,14 +136,14 @@ resource "kubernetes_deployment" "deployment_production" {
     revision_history_limit = 3
     selector {
       match_labels = {
-        app = var.name
+        app = var.uuid
       }
     }
 
     template {
       metadata {
         labels = {
-          app = var.name
+          app = var.uuid
         }
       }
 
@@ -155,7 +155,7 @@ resource "kubernetes_deployment" "deployment_production" {
                 match_expressions {
                   key      = "app"
                   operator = "In"
-                  values   = [var.name]
+                  values   = [var.uuid]
                 }
               }
               topology_key = "kubernetes.io/hostname"

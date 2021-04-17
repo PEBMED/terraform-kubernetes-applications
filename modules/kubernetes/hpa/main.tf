@@ -1,6 +1,9 @@
 resource "kubernetes_horizontal_pod_autoscaler" "hpa" {
   metadata {
-    name = var.name
+    name = var.uuid
+    labels = {
+      alias = var.name
+    }
   }
 
   spec {
