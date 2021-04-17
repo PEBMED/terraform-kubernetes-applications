@@ -137,7 +137,6 @@ resource "kubernetes_deployment" "deployment_production" {
     selector {
       match_labels = {
         app = var.uuid
-        alias = var.name
       }
     }
 
@@ -145,6 +144,7 @@ resource "kubernetes_deployment" "deployment_production" {
       metadata {
         labels = {
           app = var.uuid
+          alias = var.name
         }
       }
 
