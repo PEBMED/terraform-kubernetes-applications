@@ -120,6 +120,7 @@ resource "kubernetes_deployment" "deployment_production" {
     labels = {
       app = var.uuid
       alias = var.name
+      namespace = "default"
     }
   }
 
@@ -145,6 +146,7 @@ resource "kubernetes_deployment" "deployment_production" {
         labels = {
           app = var.uuid
           alias = var.name
+          namespace = "default"
         }
       }
 
