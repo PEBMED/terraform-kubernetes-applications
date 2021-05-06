@@ -106,7 +106,7 @@ resource "kubernetes_service" "production" {
   metadata {
     name = "svc-${var.uuid}"
     annotations = {
-      "external-dns.alpha.kubernetes.io/aws-weight": "100"
+      "external-dns.alpha.kubernetes.io/aws-weight": "99"
       "external-dns.alpha.kubernetes.io/hostname": "app-${var.uuid}.${var.root_domain}"
       "service.beta.kubernetes.io/aws-load-balancer-ssl-cert": var.aws_cert_arn
       "service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout": "600"
