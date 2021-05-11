@@ -7,6 +7,7 @@ variable "replicas" { default = "1" }
 variable "mount_path" {}
 variable "root_path" {}
 variable "healthcheck_path" { default = "/healthcheck" }
+variable "healthcheck_port" { default = "" }
 variable "ports" {}
 variable "protocol" { default = "HTTP" }
 variable "dns_policy" {}

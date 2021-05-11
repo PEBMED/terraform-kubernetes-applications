@@ -2,6 +2,7 @@ variable "k8s_api_address" {}
 variable "k8s_config_path" {}
 variable "application_name" {}
 variable "application_ports" { type = list(number) }
+variable "healthcheck_port" { default = "" }
 variable "registry" {}
 variable "image" { default = "" }
 variable "environment" { default = "develop" }

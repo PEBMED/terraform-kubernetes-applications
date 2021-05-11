@@ -54,6 +54,7 @@ module "deployment" {
   env               = var.application_env_var
   name              = var.application_name
   ports             = var.application_ports
+  healthcheck_port  = var.healthcheck_port
   registry          = var.registry
   image             = local.deployment_container_image
   mount_path        = local.mount_path

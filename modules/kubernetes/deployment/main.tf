@@ -206,7 +206,7 @@ resource "kubernetes_deployment" "deployment_production" {
           liveness_probe {
             http_get {
               path    = "/healthcheck"
-              port    = var.ports[0]
+              port    = var.healthcheck_port == "" ? var.ports[0] : var.healthcheck_port
               scheme  = var.protocol
             }
             initial_delay_seconds = var.probe["initial_delay_seconds"]
@@ -217,7 +217,7 @@ resource "kubernetes_deployment" "deployment_production" {
           readiness_probe {
             http_get {
               path    = "/healthcheck"
-              port    = var.ports[0]
+              port    = var.healthcheck_port == "" ? var.ports[0] : var.healthcheck_port
               scheme  = var.protocol
             }
             initial_delay_seconds = var.probe["initial_delay_seconds"]
