@@ -38,6 +38,6 @@ variable "limits" {
   type = map(string)
   default = {
     cpu = "250m"
-    memory = "256Mi"
+    memory = "512Mi"
   }
 }
