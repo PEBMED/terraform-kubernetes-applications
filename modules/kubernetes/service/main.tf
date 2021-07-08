@@ -74,7 +74,7 @@ resource "kubernetes_service" "homolog" {
       "service.beta.kubernetes.io/aws-load-balancer-ssl-cert": var.aws_cert_arn
       "service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout": "600"
       "service.beta.kubernetes.io/aws-load-balancer-connection-draining-enabled": "false"
-      "service.beta.kubernetes.io/aws-load-balancer-backend-protocol": local.loadbalancer_protocol
+      "service.beta.kubernetes.io/aws-load-balancer-backend-protocol": var.is_listener_tcp == "True" ? "tcp" : local.loadbalancer_protocol
       "service.beta.kubernetes.io/aws-load-balancer-ssl-ports": local.loadbalancer_ssl_port
       "external-dns.alpha.kubernetes.io/set-identifier": var.environment
       "service.beta.kubernetes.io/aws-load-balancer-internal": local.visibility_annotation
@@ -111,7 +111,7 @@ resource "kubernetes_service" "production" {
       "service.beta.kubernetes.io/aws-load-balancer-ssl-cert": var.aws_cert_arn
       "service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout": "600"
       "service.beta.kubernetes.io/aws-load-balancer-connection-draining-enabled": "false"
-      "service.beta.kubernetes.io/aws-load-balancer-backend-protocol": local.loadbalancer_protocol
+      "service.beta.kubernetes.io/aws-load-balancer-backend-protocol": var.is_listener_tcp == "True" ? "tcp" : local.loadbalancer_protocol
       "service.beta.kubernetes.io/aws-load-balancer-ssl-ports": local.loadbalancer_ssl_port
       "external-dns.alpha.kubernetes.io/set-identifier": var.environment
       "service.beta.kubernetes.io/aws-load-balancer-internal": local.visibility_annotation

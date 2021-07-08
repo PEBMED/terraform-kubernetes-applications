@@ -11,6 +11,7 @@ variable "root_path" { default = "/src" }
 variable "dns_policy" { default = "ClusterFirst" }
 variable "service_protocol" { default = "TCP" }
 variable "ip" { default = "" }
+variable "is_listener_tcp" { default = "" }
 variable "debug_port" { default = null }
 variable "application_env_var" { default = {} }
 variable "image_pull_policy" { default = "Always" }
