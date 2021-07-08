@@ -78,7 +78,7 @@ module "service" {
   aws_cert_arn = var.aws_cert_arn
   root_domain  = var.root_domain
   uuid         = random_uuid.uuid.result
-  is_listener_tcp = var.is_listener_tcp
+  is_tcp_listener = var.is_tcp_listener
 }
 
 module "hpa" {
