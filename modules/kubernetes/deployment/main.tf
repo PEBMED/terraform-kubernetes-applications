@@ -110,6 +110,10 @@ resource "kubernetes_deployment" "deployment_develop_homolog" {
   lifecycle {
     ignore_changes = [spec[0].replicas]
   }
+  timeouts {
+    create = "4m"
+    update = "4m"
+  }
 }
 
 
