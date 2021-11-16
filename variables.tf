@@ -20,7 +20,7 @@ variable "visibility" { default = "private" }
 variable "replicas" {
     type = map(number)
     default = {
-        min = 2
+        min = 4
         max = 20
     }
 }
