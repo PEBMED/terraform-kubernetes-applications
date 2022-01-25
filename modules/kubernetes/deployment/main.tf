@@ -1,7 +1,7 @@
 locals {
   max_unavailable = "${
     var.environment != "production"
-      ? 1
+      ? 0
       : 0
   }"
 }
