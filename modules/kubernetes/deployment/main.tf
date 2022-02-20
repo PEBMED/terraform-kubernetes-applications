@@ -242,6 +242,7 @@ resource "kubernetes_deployment" "deployment_production" {
       }
     }
   }
+  wait_for_rollout = true
   lifecycle {
     ignore_changes = [spec[0].replicas]
   }
