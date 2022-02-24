@@ -12,6 +12,7 @@ variable "dns_policy" { default = "ClusterFirst" }
 variable "service_protocol" { default = "TCP" }
 variable "ip" { default = "" }
 variable "is_tcp_listener" { default = "" }
+variable "loadbalancer_idle_timeout" { default = "600" }
 variable "debug_port" { default = null }
 variable "application_env_var" { default = {} }
 variable "image_pull_policy" { default = "Always" }

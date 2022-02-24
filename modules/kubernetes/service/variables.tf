@@ -9,3 +9,4 @@ variable "aws_cert_arn" {}
 variable "root_domain" {}
 variable "uuid" {}
 variable "is_tcp_listener" {}
+variable "loadbalancer_idle_timeout" {}

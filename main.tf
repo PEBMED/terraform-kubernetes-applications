@@ -79,6 +79,7 @@ module "service" {
   root_domain  = var.root_domain
   uuid         = random_uuid.uuid.result
   is_tcp_listener = var.is_tcp_listener
+  loadbalancer_idle_timeout = var.loadbalancer_idle_timeout
 }
 
 module "hpa" {

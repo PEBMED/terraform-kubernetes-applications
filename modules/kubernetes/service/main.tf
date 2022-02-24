@@ -109,7 +109,7 @@ resource "kubernetes_service" "production" {
       "external-dns.alpha.kubernetes.io/aws-weight": "100"
       "external-dns.alpha.kubernetes.io/hostname": "app-${var.uuid}.${var.root_domain}"
       "service.beta.kubernetes.io/aws-load-balancer-ssl-cert": var.aws_cert_arn
-      "service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout": "600"
+      "service.beta.kubernetes.io/aws-load-balancer-connection-idle-timeout": var.loadbalancer_idle_timeout
       "service.beta.kubernetes.io/aws-load-balancer-connection-draining-enabled": "false"
       "service.beta.kubernetes.io/aws-load-balancer-backend-protocol": var.is_tcp_listener == "True" ? "tcp" : local.loadbalancer_protocol
       "service.beta.kubernetes.io/aws-load-balancer-ssl-ports": local.loadbalancer_ssl_port
