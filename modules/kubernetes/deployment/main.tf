@@ -126,10 +126,6 @@ resource "kubernetes_deployment" "deployment_production" {
       alias = var.name
       namespace = "default"
     }
-    annotations = {
-      "prometheus.io/port" = "8080"
-      "prometheus.io/scrape" = "true"
-    }
   }
 
   spec {
@@ -155,6 +151,10 @@ resource "kubernetes_deployment" "deployment_production" {
           app = var.uuid
           alias = var.name
           namespace = "default"
+        }
+        annotations = {
+          "prometheus.io/port" = "8080"
+          "prometheus.io/scrape" = "true"
         }
       }
 
