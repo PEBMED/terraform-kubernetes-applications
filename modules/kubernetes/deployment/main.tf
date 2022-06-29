@@ -213,7 +213,7 @@ resource "kubernetes_deployment" "deployment_production" {
 
           liveness_probe {
             http_get {
-              path    = "/healthcheck"
+              path    = var.healthcheck_path
               port    = var.healthcheck_port == "" ? var.ports[0] : var.healthcheck_port
               scheme  = var.protocol
             }
@@ -224,7 +224,7 @@ resource "kubernetes_deployment" "deployment_production" {
           }
           readiness_probe {
             http_get {
-              path    = "/healthcheck"
+              path    = var.healthcheck_path
               port    = var.healthcheck_port == "" ? var.ports[0] : var.healthcheck_port
               scheme  = var.protocol
             }
