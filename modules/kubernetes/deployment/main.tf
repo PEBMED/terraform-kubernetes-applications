@@ -70,13 +70,13 @@ resource "kubernetes_deployment" "deployment_develop_homolog" {
             }
           }
 
-          dynamic "env" {
-            for_each = local.datadog_envs
-            content {
-              name = env.key
-              value = env.value
-            }
-          }
+          # dynamic "env" {
+          #   for_each = local.datadog_envs
+          #   content {
+          #     name = env.key
+          #     value = env.value
+          #   }
+          # }
 
           resources {
             requests = {
