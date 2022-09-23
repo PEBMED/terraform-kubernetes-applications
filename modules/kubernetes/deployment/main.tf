@@ -8,9 +8,9 @@ locals {
 
 locals {
   datadog_envs = {
-    "DD_SERVICE" = "${var.name}"
-    "DD_ENV" = "${var.environment}"
-    "DD_VERSION" = "${split(":", var.image)}"
+    "DD_SERVICE" = var.name
+    "DD_ENV" = var.environment
+    "DD_VERSION" = split(":", var.image)[1]
   }
 }
 
@@ -70,13 +70,13 @@ resource "kubernetes_deployment" "deployment_develop_homolog" {
             }
           }
 
-          # dynamic "env" {
-          #   for_each = local.datadog_envs
-          #   content {
-          #     name = env.key
-          #     value = env.value
-          #   }
-          # }
+          dynamic "env" {
+            for_each = local.datadog_envs
+            content {
+              name = env.key
+              value = env.value
+            }
+          }
 
           resources {
             requests = {
@@ -216,6 +216,14 @@ resource "kubernetes_deployment" "deployment_production" {
             }
           }
 
+          dynamic "env" {
+            for_each = local.datadog_envs
+            content {
+              name = env.key
+              value = env.value
+            }
+          }
+
           resources {
             requests = {
               cpu    = var.limits["cpu"]
@@ -266,8 +274,4 @@ resource "kubernetes_deployment" "deployment_production" {
   lifecycle {
     ignore_changes = [spec[0].replicas]
   }
-}
-
-output "teste" {
-  value = local.datadog_envs
 }
