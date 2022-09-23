@@ -6,6 +6,14 @@ locals {
   }"
 }
 
+locals {
+  datadog_envs = {
+    DD_SERVICE = var.name
+    DD_ENV = var.environment
+    DD_VERSION = split(":", var.image)
+  }
+}
+
 resource "kubernetes_deployment" "deployment_develop_homolog" {
   count = var.environment != "production" ? 1 : 0
   metadata {
@@ -58,6 +66,14 @@ resource "kubernetes_deployment" "deployment_develop_homolog" {
             for_each = var.env
             content {
               name  = env.key
+              value = env.value
+            }
+          }
+
+          dynamic "env" {
+            for_each = local.datadog_envs
+            content {
+              name = env.key
               value = env.value
             }
           }
