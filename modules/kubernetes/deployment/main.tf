@@ -8,9 +8,9 @@ locals {
 
 locals {
   datadog_envs = {
-    "DD_SERVICE" = var.name
-    "DD_ENV" = var.environment
-    "DD_VERSION" = split(":", var.image)
+    "DD_SERVICE" = "${var.name}"
+    "DD_ENV" = "${var.environment}"
+    "DD_VERSION" = "${split(":", var.image)}"
   }
 }
 
