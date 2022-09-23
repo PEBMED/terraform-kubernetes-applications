@@ -267,3 +267,7 @@ resource "kubernetes_deployment" "deployment_production" {
     ignore_changes = [spec[0].replicas]
   }
 }
+
+output "teste" {
+  value = local.datadog_envs
+}
