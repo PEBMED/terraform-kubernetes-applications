@@ -1,0 +1,43 @@
+version: '3'
+services:
+
+  k3s-server:
+    container_name: k3s-server
+    image: "rancher/k3s:${K3S_VERSION:-latest}"
+    command: server
+    tmpfs:
+    - /run
+    - /var/run
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 65535
+        hard: 65535
+    privileged: true
+    environment:
+    - K3S_TOKEN=something
+    - K3S_KUBECONFIG_OUTPUT=/output/kubeconfig.yaml
+    - K3S_KUBECONFIG_MODE=666
+    volumes:
+    - ./kubeconfig:/output
+    ports:
+    - 6443:6443
+    - 80:80
+    - 443:443
+
+  k3s-agent:
+    container_name: k3s-agent
+    image: "rancher/k3s:${K3S_VERSION:-latest}"
+    tmpfs:
+    - /run
+    - /var/run
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 65535
+        hard: 65535
+    privileged: true
+    restart: always
+    environment:
+    - K3S_URL=https://k3s-server:6443
+    - K3S_TOKEN=something

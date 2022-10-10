@@ -11,6 +11,8 @@ locals {
     "DD_SERVICE" = var.name
     "DD_ENV" = var.environment
     "DD_VERSION" = split(":", var.image)[1]
+    "DD_LOGS_INJECTION": "true"
+    "DD_TRACE_SAMPLE_RATE": "1"
   }
 }
 
@@ -18,9 +20,6 @@ resource "kubernetes_deployment" "deployment_develop_homolog" {
   count = var.environment != "production" ? 1 : 0
   metadata {
     name = var.name
-    labels = {
-      app = var.name
-    }
   }
 
   spec {
@@ -141,6 +140,9 @@ resource "kubernetes_deployment" "deployment_production" {
       app = var.uuid
       alias = var.name
       namespace = "default"
+      "tags.datadoghq.com/env" = var.environment
+      "tags.datadoghq.com/service" = var.name
+      "tags.datadoghq.com/version" = split(":", var.image)[1]
     }
   }
 
@@ -167,6 +169,9 @@ resource "kubernetes_deployment" "deployment_production" {
           app = var.uuid
           alias = var.name
           namespace = "default"
+          "tags.datadoghq.com/env" = var.environment
+          "tags.datadoghq.com/service" = var.name
+          "tags.datadoghq.com/version" = split(":", var.image)[1]
         }
         annotations = {
           "prometheus.io/port" = "8080"
@@ -221,6 +226,16 @@ resource "kubernetes_deployment" "deployment_production" {
             content {
               name = env.key
               value = env.value
+            }
+          }
+
+          env {
+            name = "DD_AGENT_HOST"
+            value_from {
+              field_ref {
+                api_version = "v1"
+                field_path = "status.hostIP"
+              }
             }
           }
 
