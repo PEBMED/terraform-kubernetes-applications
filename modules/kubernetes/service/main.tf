@@ -136,3 +136,28 @@ resource "kubernetes_service" "production" {
     type       =  "LoadBalancer"
   }
 }
+
+resource "kubernetes_service" "production_clusterip" {
+  count = var.environment == "production" ? 1 : 0
+  metadata {
+    name = var.name
+  }
+  spec {
+    selector = {
+      app = var.uuid
+    }
+    session_affinity = "None"
+
+    dynamic "port" {
+      for_each = var.ports
+      content {
+        port = port.value
+        target_port = port.value
+        protocol = var.protocol
+        name = "port-${port.value}"
+      }
+    }
+
+    type       =  "ClusterIP"
+  }
+}
