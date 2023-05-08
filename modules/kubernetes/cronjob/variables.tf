@@ -14,3 +14,4 @@ variable "requests" {
 }
 variable "limits" {}
 variable "dns_policy" {}
+variable "schedule" {}

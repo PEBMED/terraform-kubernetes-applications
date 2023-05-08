@@ -10,7 +10,7 @@ resource "kubernetes_cron_job_v1" "cronjob" {
   spec {
     concurrency_policy            = "Forbid"
     failed_jobs_history_limit     = 2
-    schedule                      = "1 0 * * *"
+    schedule                      = var.schedule
     timezone                      = "Etc/UTC"
     starting_deadline_seconds     = 10
     successful_jobs_history_limit = 5
