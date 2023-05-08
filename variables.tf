@@ -44,3 +44,6 @@ variable "limits" {
     memory = "512Mi"
   }
 }
+variable "application_type" {
+  default = "web"
+}

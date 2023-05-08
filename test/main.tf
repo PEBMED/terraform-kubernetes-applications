@@ -1,6 +1,6 @@
 module "kubernetes-application" {
   source = "/terraform"
-  registry = ""
+  registry = "registry.hub.docker.com/library"
   k8s_api_address = "https://k3s-server:6443"
   application_name = "test"
   k8s_config_path = "/root/.kube/kubeconfig.yaml"
@@ -8,4 +8,5 @@ module "kubernetes-application" {
   ip = "10.43.125.3"
   image = "nginx:1.19"
   environment = "production"
+  healthcheck_path = "/"
 }

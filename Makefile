@@ -41,7 +41,7 @@ logs: ; @\
     docker-compose -f ./test/docker-compose.yml -p ${PROJECT_NAME} logs -f; \
     echo ""; \
 
-test_init: ; @\
+test: ; @\
     clear; \
     echo "[Testing the environment...]"; \
     echo ""; \
@@ -53,5 +53,5 @@ test_init: ; @\
 		--volume $(shell pwd)/modules:/terraform/modules \
 		--volume $(shell pwd)/main.tf:/terraform/main.tf \
 		--volume $(shell pwd)/variables.tf:/terraform/variables.tf \
-		-it --entrypoint /bin/sh hashicorp/terraform:0.12.20 ; \
+		-it --entrypoint /bin/sh hashicorp/terraform:0.14.11 ; \
     echo ""; \

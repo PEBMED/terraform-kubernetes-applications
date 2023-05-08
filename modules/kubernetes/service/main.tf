@@ -1,29 +1,9 @@
 locals {
-  service_type_develop = "${
-    var.node_port != null
-      ? "LoadBalancer"
-      : "ClusterIP"
-  }"
-  service_type_production = "${
-    var.visibility == "public" && var.environment == "production"
-      ? "LoadBalancer"
-      : "ClusterIP"
-  }"
-  visibility_annotation = "${
-    var.visibility != "private"
-      ? "false"
-      : "true"
-  }"
-  loadbalancer_protocol = "${
-    var.visibility != "private"
-      ? "https"
-      : "http"
-  }"
-  loadbalancer_ssl_port = "${
-    var.visibility != "private"
-      ? "443"
-      : "*"
-  }"
+  service_type_develop = var.node_port != null ? "LoadBalancer" : "ClusterIP"
+  service_type_production = var.visibility == "public" && var.environment == "production" ? "LoadBalancer" : "ClusterIP"
+  visibility_annotation = var.visibility != "private" ? "false" : "true"
+  loadbalancer_protocol = var.visibility != "private" ? "https" : "http"
+  loadbalancer_ssl_port = var.visibility != "private" ? "443" : "*"
 }
 
 resource "kubernetes_service" "develop" {
