@@ -47,3 +47,4 @@ variable "limits" {
 variable "application_type" {
   default = "web"
 }
+variable "schedule" { default = "1 0 * * *"}
