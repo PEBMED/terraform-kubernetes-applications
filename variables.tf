@@ -52,3 +52,6 @@ variable "tier" {
     error_message = "Must be either \"tier-1\" or \"tier-2\" or \"tier-3\"."
   }
 }
+variable "application_type" {
+  default = "web"
+}

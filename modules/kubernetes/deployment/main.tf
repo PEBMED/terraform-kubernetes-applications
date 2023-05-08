@@ -1,9 +1,5 @@
 locals {
-  max_unavailable = "${
-    var.environment != "production"
-      ? 0
-      : 0
-  }"
+  max_unavailable = var.environment != "production" ? 0 : 0
 }
 
 resource "kubernetes_deployment" "deployment_develop_homolog" {

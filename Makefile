@@ -41,7 +41,7 @@ logs: ; @\
     docker-compose -f ./test/docker-compose.yml -p ${PROJECT_NAME} logs -f; \
     echo ""; \
 
-test_init: ; @\
+test: ; @\
     clear; \
     echo "[Testing the environment...]"; \
     echo ""; \
