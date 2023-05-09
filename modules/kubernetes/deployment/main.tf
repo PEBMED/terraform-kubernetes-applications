@@ -2,6 +2,12 @@ locals {
   max_unavailable = var.environment != "production" ? 0 : 0
 }
 
+data "kubernetes_secret_v1" "secret" {
+  metadata {
+    name = var.name
+  }
+}
+
 resource "kubernetes_deployment" "deployment_develop_homolog" {
   count = var.environment != "production" ? 1 : 0
   metadata {
