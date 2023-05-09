@@ -1,6 +1,5 @@
 module "kubernetes-application" {
   source = "/terraform"
-  schedule = var.schedule
   registry = "registry.hub.docker.com/library"
   k8s_api_address = "https://k3s-server:6443"
   application_name = "test"
