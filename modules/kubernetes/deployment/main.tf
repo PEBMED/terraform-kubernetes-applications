@@ -109,7 +109,6 @@ resource "kubernetes_deployment" "deployment_develop_homolog" {
   }
 }
 
-
 resource "kubernetes_deployment" "deployment_production" {
   count = var.environment != "production" ? 0 : 1
   metadata {

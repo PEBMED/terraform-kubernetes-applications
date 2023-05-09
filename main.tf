@@ -75,6 +75,7 @@ module "hpa" {
 module "cronjob" {
   count = var.application_type == "cronjob" ? 1 : 0
   source            = "./modules/kubernetes/cronjob"
+  schedule          = var.schedule
   environment       = var.environment
   env               = var.application_env_var
   name              = var.application_name
