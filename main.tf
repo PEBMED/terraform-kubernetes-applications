@@ -79,6 +79,7 @@ module "cronjob" {
   environment       = var.environment
   env               = var.application_env_var
   name              = var.application_name
+  ports             = var.application_ports
   registry          = var.registry
   image             = local.deployment_container_image
   dns_policy        = var.dns_policy
