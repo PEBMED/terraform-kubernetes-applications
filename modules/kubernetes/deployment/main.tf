@@ -17,7 +17,7 @@ locals {
 }
 
 data "kubernetes_secret" "secret" {
-  count = var.environment != "production" ? 1 : 0
+  # count = var.environment != "production" ? 0 : 1
   metadata {
     name = var.name
   }
