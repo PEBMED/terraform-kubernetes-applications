@@ -43,6 +43,9 @@ locals {
 provider "kubernetes" {
   host        = var.k8s_api_address
   config_path = var.k8s_config_path
+  exec {
+    api_version = "client.authentication.k8s.io/v1beta1"
+  }
 }
 
 resource "random_uuid" "uuid" {
