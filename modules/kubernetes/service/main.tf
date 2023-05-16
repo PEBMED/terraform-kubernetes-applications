@@ -97,7 +97,7 @@ resource "kubernetes_service" "homolog" {
     }
 
     type       = local.service_type_production
-    cluster_ip = var.ip_address
+    cluster_ip = var.ip_address == "" ? null : var.ip_address
   }
 }
 
