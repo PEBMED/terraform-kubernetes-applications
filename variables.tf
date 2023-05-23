@@ -44,6 +44,7 @@ variable "limits" {
     memory = "512Mi"
   }
 }
+<<<<<<< HEAD
 variable "tier" {
   type = string
   default = "tier-3"
@@ -52,6 +53,8 @@ variable "tier" {
     error_message = "Must be either \"tier-1\" or \"tier-2\" or \"tier-3\"."
   }
 }
+=======
+>>>>>>> 6fad68d914a3e3a8452294728cbccec2c6982237
 variable "application_type" {
   default = "web"
 }

@@ -53,5 +53,9 @@ test_init: ; @\
 		--volume $(shell pwd)/modules:/terraform/modules \
 		--volume $(shell pwd)/main.tf:/terraform/main.tf \
 		--volume $(shell pwd)/variables.tf:/terraform/variables.tf \
+<<<<<<< HEAD
 		-it --entrypoint /bin/sh hashicorp/terraform:0.13.7 ; \
+=======
+		-it --entrypoint /bin/sh hashicorp/terraform:0.14.11 ; \
+>>>>>>> 6fad68d914a3e3a8452294728cbccec2c6982237
     echo ""; \
