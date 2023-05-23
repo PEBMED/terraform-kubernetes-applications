@@ -2,16 +2,22 @@ locals {
   max_unavailable = var.environment != "production" ? 0 : 0
 }
 
-data "kubernetes_secret_v1" "secret" {
-  metadata {
-    name = var.name
-  }
-}
+# data "kubernetes_secret_v1" "secret" {
+#   metadata {
+#     name = var.name
+#   }
+# }
 
 resource "kubernetes_deployment" "deployment_develop_homolog" {
   count = var.environment != "production" ? 1 : 0
   metadata {
     name = var.name
+    labels = {
+      app = var.uuid
+      alias = var.name
+      namespace = "default"
+      tier = var.tier
+    }
   }
 
   spec {
@@ -35,6 +41,9 @@ resource "kubernetes_deployment" "deployment_develop_homolog" {
       metadata {
         labels = {
           app = var.name
+          alias = var.name
+          namespace = "default"
+          tier = var.tier
         }
       }
 

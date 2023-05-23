@@ -7,6 +7,6 @@ module "kubernetes-application" {
   application_ports = [80]
   ip = "10.43.125.3"
   image = "nginx:1.19"
-  environment = "production"
+  environment = "homolog"
   healthcheck_path = "/"
 }
