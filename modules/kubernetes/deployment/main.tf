@@ -6,16 +6,6 @@ locals {
   }"
 }
 
-locals {
-  datadog_envs = {
-    "DD_SERVICE" = var.name
-    "DD_ENV" = var.environment
-    "DD_VERSION" = split(":", var.image)[1]
-    "DD_LOGS_INJECTION": "true"
-    "DD_TRACE_SAMPLE_RATE": "1"
-  }
-}
-
 resource "kubernetes_deployment" "deployment_develop_homolog" {
   count = var.environment != "production" ? 1 : 0
   metadata {
@@ -65,14 +55,6 @@ resource "kubernetes_deployment" "deployment_develop_homolog" {
             for_each = var.env
             content {
               name  = env.key
-              value = env.value
-            }
-          }
-
-          dynamic "env" {
-            for_each = local.datadog_envs
-            content {
-              name = env.key
               value = env.value
             }
           }
@@ -140,9 +122,7 @@ resource "kubernetes_deployment" "deployment_production" {
       app = var.uuid
       alias = var.name
       namespace = "default"
-      "tags.datadoghq.com/env" = var.environment
-      "tags.datadoghq.com/service" = var.name
-      "tags.datadoghq.com/version" = split(":", var.image)[1]
+      tier = var.tier
     }
   }
 
@@ -169,9 +149,7 @@ resource "kubernetes_deployment" "deployment_production" {
           app = var.uuid
           alias = var.name
           namespace = "default"
-          "tags.datadoghq.com/env" = var.environment
-          "tags.datadoghq.com/service" = var.name
-          "tags.datadoghq.com/version" = split(":", var.image)[1]
+          tier = var.tier
         }
         annotations = {
           "prometheus.io/port" = "8080"
@@ -218,24 +196,6 @@ resource "kubernetes_deployment" "deployment_production" {
             content {
               name  = env.key
               value = env.value
-            }
-          }
-
-          dynamic "env" {
-            for_each = local.datadog_envs
-            content {
-              name = env.key
-              value = env.value
-            }
-          }
-
-          env {
-            name = "DD_AGENT_HOST"
-            value_from {
-              field_ref {
-                api_version = "v1"
-                field_path = "status.hostIP"
-              }
             }
           }
 

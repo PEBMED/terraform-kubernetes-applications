@@ -44,3 +44,11 @@ variable "limits" {
     memory = "512Mi"
   }
 }
+variable "tier" {
+  type = string
+  default = "tier-3"
+  validation {
+    condition     = contains(["tier-1", "tier-2", "tier-3"], var.tier)
+    error_message = "Must be either \"tier-1\" or \"tier-2\" or \"tier-3\"."
+  }
+}

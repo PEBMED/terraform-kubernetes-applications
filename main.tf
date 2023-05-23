@@ -69,6 +69,7 @@ module "deployment" {
   probe             = var.probe
   limits            = var.limits
   uuid              = random_uuid.uuid.result
+  tier              = var.tier
 }
 
 module "service" {
