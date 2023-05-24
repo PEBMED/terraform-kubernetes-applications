@@ -1,10 +1,7 @@
 variable "k8s_api_address" {}
 variable "k8s_config_path" {}
 variable "application_name" {}
-variable "application_ports" {
-  type = list(number)
-  default = [80]
-}
+variable "application_ports" { type = list(number) }
 variable "healthcheck_port" { default = "" }
 variable "healthcheck_path" { default = "/healthcheck" }
 variable "registry" {}

@@ -9,4 +9,5 @@ module "kubernetes-application" {
   image = "nginx:1.19"
   environment = "homolog"
   healthcheck_path = "/"
+  application_type = "cronjob"
 }
