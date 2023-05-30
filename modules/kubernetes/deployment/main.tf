@@ -6,13 +6,6 @@ locals {
   }"
 }
 
-data "kubernetes_secret_v1" "secret" {
-  # count = var.environment != "production" ? 0 : 1
-  metadata {
-    name = var.name
-  }
-}
-
 resource "kubernetes_deployment" "deployment_develop_homolog" {
   count = var.environment != "production" ? 1 : 0
   metadata {
